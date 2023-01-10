@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -55,7 +56,13 @@
 
                             <div class="ml-12">
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    gegegege Omsim has wonderful, thorough documentation covering every aspect of the framework. Whether you are new to the framework or have previous experience with Laravel, we recommend reading all of the documentation from beginning to end.
+                                <div>
+    <h1>{{ $an_subject->subject }}</h1>
+    <p>{{ $an_content->content }}</p>
+    <p>{{ $an_dateposted->dateposted }}</p>
+</div>
+
+
                                 </div>
                             </div>
                         </div>
