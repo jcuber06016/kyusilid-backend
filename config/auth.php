@@ -40,7 +40,19 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'users',
+            'hash' => false,
+        ],
+        
+        'login' => [
+            'driver' => 'session',
+            'provider' => 'login',
+        ],
     ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -69,6 +81,11 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+    
+    'login' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\UserModel::class,
+    ],
     ],
 
     /*

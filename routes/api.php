@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,8 +15,21 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+//Route for announcement
 Route::post('add-announcement',[AnnouncementController::class, 'store']);
 Route::get('get-announcement',[AnnouncementController::class, 'index']);
+
+
+//Route for user login
+Route::post('login',[UserController::class, 'login']);
+Route::post('register',[UserController::class, 'register']);
+
+
+
+
+
+
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
