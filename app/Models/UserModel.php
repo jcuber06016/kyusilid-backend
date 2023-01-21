@@ -9,7 +9,7 @@ class UserModel extends Authenticatable
 {       
     protected $table = 'login';
     protected $primaryKey = 'acc_id';
-    protected $fillable = ['acc_email','acc_username', 'acc_password','acc_type'];
+    protected $fillable = ['acc_email','acc_username', 'acc_password','usertype'];
     public $timestamps = false;
 
     // relationships

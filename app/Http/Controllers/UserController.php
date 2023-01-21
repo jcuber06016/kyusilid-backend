@@ -11,7 +11,7 @@ class UserController extends Controller
     {
         $user= new UserModel;
         $user->acc_username=$request->input('acc_username');
-        $user->acc_type=$request->input('acc_type');
+        $user->usertype=$request->input('usertype');
         $user->acc_email=$request->input('acc_email ');
         $user->acc_password=Hash::make($request->input('acc_password'));
         $user->save();
@@ -28,23 +28,23 @@ class UserController extends Controller
         }
         else{
 
-            if ($user->acc_type === 'admin') {
+            if ($user->usertype === 'admin') {
                         return response()->json([
                             'status' => 'success',
                             'user' => $user,
-                            'acc_type' => 'admin'
+                            'usertype' => 'admin'
                         ]);
-                    } elseif ($user->acc_type === 'stud') {
+                    } elseif ($user->usertype === 'stud') {
                         return response()->json([
                             'status' => 'success',
                             'user' => $user,
-                            'acc_type' => 'stud'
+                            'usertype' => 'stud'
                         ]);
-                    } elseif($user->acc_type === 'prof') {
+                    } elseif($user->usertype === 'prof') {
                         return response()->json([
                             'status' => 'success',
                             'user' => $user,
-                            'acc_type' => 'prof'
+                            'usertype' => 'prof'
                         ]);
                     } else {
                         return response()->json(['status' => 'error sa else']);
@@ -59,23 +59,23 @@ class UserController extends Controller
         //     // Authentication passed...
         //     $user = Auth::guard('login')->user();
 
-        //     if ($user->acc_type === 'admin') {
+        //     if ($user->usertype === 'admin') {
         //         return response()->json([
         //             'status' => 'success',
         //             'user' => $user,
-        //             'acc_type' => 'admin'
+        //             'usertype' => 'admin'
         //         ]);
-        //     } elseif ($user->acc_type === 'stud') {
+        //     } elseif ($user->usertype === 'stud') {
         //         return response()->json([
         //             'status' => 'success',
         //             'user' => $user,
-        //             'acc_type' => 'stud'
+        //             'usertype' => 'stud'
         //         ]);
-        //     } elseif($user->acc_type === 'prof') {
+        //     } elseif($user->usertype === 'prof') {
         //         return response()->json([
         //             'status' => 'success',
         //             'user' => $user,
-        //             'acc_type' => 'prof'
+        //             'usertype' => 'prof'
         //         ]);
         //     } else {
         //         return response()->json(['status' => 'error sa else']);
