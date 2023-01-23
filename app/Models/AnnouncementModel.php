@@ -9,6 +9,6 @@ class AnnouncementModel extends Model
 {
     use HasFactory;
     protected $table = 'announcement';
-    protected $fillable =['an_content'];
+    protected $fillable =['an_title', 'an_content'];
     
 }
