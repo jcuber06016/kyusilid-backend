@@ -1,9 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\Department;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\UserModel;
@@ -13,19 +11,19 @@ class UserController extends Controller
 {
     public function register(Request $request)
     {
-        $user= new UserModel;
-        $user->acc_username=$request->input('acc_username');
-        $user->usertype=$request->input('usertype');
-        $user->acc_email=$request->input('acc_email ');
-        $user->acc_password=Hash::make($request->input('acc_password'));
-        $user->save();
-        return $user;
+        // $user= new UserModel;
+        // $user->acc_username=$request->input('acc_username');
+        // $user->usertype=$request->input('usertype');
+        // $user->acc_email=$request->input('acc_email ');
+        // $user->acc_password=Hash::make($request->input('acc_password'));
+        // $user->save();
+        // return $user;
     }
     
     public function login(Request $request)
     {
-        $credentials = new UserModel;
-        $credentials = $request->only('acc_username', 'acc_password');
+        // $credentials = new UserModel;
+        // $credentials = $request->only('acc_username', 'acc_password');
 
 
         // $user= UserModel::where ('acc_username', $request->acc_username)->first();
@@ -41,7 +39,7 @@ class UserController extends Controller
 
 
 
-        $user = UserModel::where('acc_username', $request->acc_username)->with('professor', 'student')->first();
+        // $user = UserModel::where('acc_username', $request->acc_username)->with('professor', 'student')->first();
 
 
         if(!$user || !Hash::check($request->acc_password,$user->acc_password))

@@ -30,6 +30,8 @@ Route::post('register',[UserController::class, 'register']);
 Route::get('classlist',[ClasslistController::class, 'index']);
 
 
+Route::get('getclasslist/{id?}' ,[ClasslistController::class ,'getclasslist']);
+
 
 
 
