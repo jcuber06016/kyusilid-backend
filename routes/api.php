@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 //Route for announcement
 Route::post('add-announcement',[AnnouncementController::class, 'store']);
-Route::get('get-announcement',[AnnouncementController::class, 'index']);
+Route::get('get-announcement/{id?}',[AnnouncementController::class, 'getannouncement']);
 
 
 //Route for user login
@@ -27,10 +27,14 @@ Route::post('login',[UserController::class, 'login']);
 Route::post('register',[UserController::class, 'register']);
 
 
+
+
 Route::get('classlist',[ClasslistController::class, 'index']);
 
 
 Route::get('getclasslist/{id?}' ,[ClasslistController::class ,'getclasslist']);
+Route::get('getusertype/{id?}' ,[ClasslistController::class ,'checkusertype']);
+
 
 
 
