@@ -51,8 +51,6 @@ class UserController extends Controller
         else{
          
             if ($user->usertype === 'admin') {
-
-
                         return response()->json([
                             'status' => 'success',
                             'user' => $user,

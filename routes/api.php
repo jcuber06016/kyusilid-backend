@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ClasslistController;
+use App\Http\Controllers\PersonlistController;
 use App\Http\Controllers\UserController;
 use App\Models\ClassListModel;
 use Illuminate\Http\Request;
@@ -34,6 +35,7 @@ Route::get('classlist',[ClasslistController::class, 'index']);
 
 Route::get('getclasslist/{id?}' ,[ClasslistController::class ,'getclasslist']);
 Route::get('getusertype/{id?}' ,[ClasslistController::class ,'checkusertype']);
+Route::get('getpersonlist/{id?}' , [PersonlistController::class, 'getpersonlist']);
 
 
 
