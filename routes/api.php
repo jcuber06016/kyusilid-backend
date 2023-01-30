@@ -36,6 +36,7 @@ Route::get('classlist',[ClasslistController::class, 'index']);
 Route::get('getclasslist/{id?}' ,[ClasslistController::class ,'getclasslist']);
 Route::get('getusertype/{id?}' ,[ClasslistController::class ,'checkusertype']);
 Route::get('getpersonlist/{id?}' , [PersonlistController::class, 'getpersonlist']);
+Route::get('getcomments/{id?}' , [AnnouncementController::class, 'getcomments']);
 
 
 
