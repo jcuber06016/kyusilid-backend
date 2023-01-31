@@ -19,8 +19,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //Route for announcement
-Route::post('add-announcement',[AnnouncementController::class, 'store']);
+Route::post('add-announcement',[AnnouncementController::class, 'addannouncement']);
 Route::get('get-announcement/{id?}',[AnnouncementController::class, 'getannouncement']);
+Route::get('get-announcementforstudent/{id?}',[AnnouncementController::class, 'getannouncementforstudent']);
 
 
 //Route for user login

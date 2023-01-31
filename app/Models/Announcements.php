@@ -5,9 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Announcements extends Model
 {
-    protected $table = "announcement";
-
     use HasFactory;
+    public $timestamps = false;
+
+
+    protected $table = "announcement";
+    protected $primary_key = 'an_id';
+
+
+  
 }
