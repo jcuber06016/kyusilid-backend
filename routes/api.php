@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ClasslistController;
+use App\Http\Controllers\Classworkcontroller;
 use App\Http\Controllers\PersonlistController;
 use App\Http\Controllers\UserController;
-use App\Models\ClassListModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +22,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('add-announcement',[AnnouncementController::class, 'addannouncement']);
 Route::get('get-announcement/{id?}',[AnnouncementController::class, 'getannouncement']);
 Route::get('get-announcementforstudent/{id?}',[AnnouncementController::class, 'getannouncementforstudent']);
-
+Route::get('get-topiclist/{id?}',[Classworkcontroller::class, 'gettopics']);
+Route::get('get-activitylist/{id?}',[Classworkcontroller::class, 'getactivities']);
+Route::get('getcommentcount_act/{id?}',[Classworkcontroller::class, 'getcommentcount']);
 
 //Route for user login
 Route::post('login',[UserController::class, 'login']);
@@ -35,6 +37,7 @@ Route::get('classlist',[ClasslistController::class, 'index']);
 
 
 Route::get('getclasslist/{id?}' ,[ClasslistController::class ,'getclasslist']);
+Route::get('getclasslist_archived/{id?}' ,[ClasslistController::class ,'getclasslist_archived']);
 Route::get('getusertype/{id?}' ,[ClasslistController::class ,'checkusertype']);
 Route::get('getpersonlist/{id?}' , [PersonlistController::class, 'getpersonlist']);
 Route::get('getcomments/{id?}' , [AnnouncementController::class, 'getcomments']);

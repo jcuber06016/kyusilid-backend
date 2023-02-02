@@ -15,9 +15,9 @@ class AnnouncementController extends Controller
         return DB::table('announcement')
         ->join('classinfo' , 'classinfo.classes_id' , "=", 'announcement.classes_id')
         ->join('login' , 'login.acc_id' , "=", 'announcement.acc_id')
-        ->select('an_title' ,'an_content', 'created_at', 'status', 'login.lastname' , 'login.firstname' , 'login.middle' , 'login.suffix' , 'login.title' , 'login.acc_id' ,'announcement.an_id')
+        ->select('an_title' ,'an_content', 'created_at', 'schedule', 'login.lastname' , 'login.firstname' , 'login.middle' , 'login.suffix' , 'login.title' , 'login.acc_id' ,'announcement.an_id')
         ->where('classinfo.classes_id', $id)
-        ->orderByDesc('an_id')
+        ->orderByDesc('schedule')
         ->get();
     }
 
@@ -25,10 +25,10 @@ class AnnouncementController extends Controller
         return DB::table('announcement')
         ->join('classinfo' , 'classinfo.classes_id' , "=", 'announcement.classes_id')
         ->join('login' , 'login.acc_id' , "=", 'announcement.acc_id')
-        ->select('an_title' ,'an_content', 'created_at', 'status', 'login.lastname' , 'login.firstname' , 'login.middle' , 'login.suffix' , 'login.title' , 'login.acc_id' ,'announcement.an_id')
+        ->select('an_title' ,'an_content', 'created_at', 'schedule', 'login.lastname' , 'login.firstname' , 'login.middle' , 'login.suffix' , 'login.title' , 'login.acc_id' ,'announcement.an_id')
         ->where('classinfo.classes_id', $id)
         ->where('schedule' , '<=', Carbon::now())
-        ->orderByDesc('an_id')
+        ->orderByDesc('schedule')
         ->get();
     }
 
