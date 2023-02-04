@@ -29,6 +29,7 @@ Route::get('getcommentcount_act/{id?}',[Classworkcontroller::class, 'getcommentc
 //Route for user login
 Route::post('login',[UserController::class, 'login']);
 Route::post('register',[UserController::class, 'register']);
+Route::post('createtopic',[Classworkcontroller::class , 'createtopic']);
 
 
 
@@ -41,6 +42,8 @@ Route::get('getclasslist_archived/{id?}' ,[ClasslistController::class ,'getclass
 Route::get('getusertype/{id?}' ,[ClasslistController::class ,'checkusertype']);
 Route::get('getpersonlist/{id?}' , [PersonlistController::class, 'getpersonlist']);
 Route::get('getcomments/{id?}' , [AnnouncementController::class, 'getcomments']);
+Route::get('getstudentlist/{id?}' , [PersonlistController::class, 'getstudentlist']);
+
 
 
 

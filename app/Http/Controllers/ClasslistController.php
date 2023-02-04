@@ -84,6 +84,8 @@ class ClasslistController extends Controller
             ->where('classinfo.isarchived' , 1)
             ->get();
     }
+
+ 
 }
 
 

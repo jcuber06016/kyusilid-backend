@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class topics extends Model
+class Topics extends Model
 
 
-{
-
-    protected $table = 'topic';
+{ 
     use HasFactory;
+    public $timestamps = false;
+
+    protected $table = "topic";
+    protected $primary_key = 'topic_id';
 }
