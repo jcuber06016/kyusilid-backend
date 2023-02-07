@@ -10,7 +10,7 @@ class Topics extends Model
 
 { 
     use HasFactory;
-    public $timestamps = false;
+   public $timestamps = false;
 
     protected $table = "topic";
     protected $primary_key = 'topic_id';

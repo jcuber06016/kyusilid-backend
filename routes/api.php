@@ -30,6 +30,8 @@ Route::get('getcommentcount_act/{id?}',[Classworkcontroller::class, 'getcommentc
 Route::post('login',[UserController::class, 'login']);
 Route::post('register',[UserController::class, 'register']);
 Route::post('createtopic',[Classworkcontroller::class , 'createtopic']);
+Route::post('createactivity/{id?}',[Classworkcontroller::class, 'createactivity']);
+
 
 
 
