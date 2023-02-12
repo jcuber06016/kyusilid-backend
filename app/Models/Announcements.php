@@ -13,7 +13,7 @@ class Announcements extends Model
 
 
     protected $table = "announcement";
-    protected $primary_key = 'an_id';
+    protected $primaryKey = 'an_id';
 
 
   

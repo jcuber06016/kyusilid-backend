@@ -50,6 +50,53 @@ class PersonlistController extends Controller
        
     }
 
+
+    function getdeptinfo($id = null){
+        $admintable = DB:: table('admin')
+        ->join('login' , 'login.acc_id' , "=", "admin.acc_id")
+        ->where('admin.dep_id' , $id)->get();
+
+        $firstyear = DB::table('classinfo')
+        ->where('dep_id' , $id)
+        ->where('yearlvl' , 1) ->get() ->count();
+
+        $secondyear = DB::table('classinfo')
+        ->where('dep_id' , $id)
+        ->where('yearlvl' , 2)->get()  ->count();
+
+        $thirdyear = DB::table('classinfo')
+        ->where('dep_id' , $id)
+        ->where('yearlvl' , 3) ->get() ->count();
+
+        $fourthyear = DB::table('classinfo')
+        ->where('dep_id' , $id)
+        ->where('yearlvl' , 4)->get() ->count();
+
+
+        $studcount = DB:: table('student')
+        ->where('stud_course' , $id)->get() ->count();
+
+        $profcount = DB:: table('professor')
+        ->where('dep_id' , $id)->get() ->count();
+
+        $temp2 = [
+            'depadminlist' => $admintable,
+            'firstyear' =>$firstyear, 
+            'secondyear' => $secondyear,
+            'thirdyear' => $thirdyear,
+            'fourthyear' => $fourthyear,
+            'studcount' => $studcount,
+            'profcount' => $profcount
+        ];
+
+
+        return $temp2;
+
+
+
+
+    }
+
  
 
 

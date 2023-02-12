@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Activities;
 use App\Models\Activity_assign;
+use App\Models\Activitycomments;
 use App\Models\Topics;
+use Carbon\Carbon;
 use Hamcrest\Core\HasToString;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class Classworkcontroller extends Controller
 {
@@ -43,12 +46,15 @@ class Classworkcontroller extends Controller
 
     }
 
+
+
+
     public function createactivity(Request $request){
 
   
        $topic = $request->input('topic');
        $studentselection = $request->input('studentselection');
-
+     
 
         foreach($studentselection as $element){
             $temp  = new Activities();
@@ -57,6 +63,10 @@ class Classworkcontroller extends Controller
             $temp->allow_edit = $request->input('allowedit');
             $temp->allow_late = $request->input('allowlate');
             $temp->availability  = $request->input('availability');
+
+
+
+
             $temp->category = 'lab';
             
 
@@ -88,23 +98,38 @@ class Classworkcontroller extends Controller
                         $assign-> acc_id = $studentitem['studentitem']['acc_id'];
                         $assign->activity_id = $activity_id;
                         $assign->save();
-                    }
-             
-                  
+                    }             
                 }
-
             }
-
-
-            
- 
-
-
-
 
         }      
 
     }
+
+    public function getactivitycommentlist($id = null){
+       return DB:: table('activity_comment')
+       ->join('login' , 'login.acc_id' , "=" , "activity_comment.acc_id")
+       ->where('activity_id', $id)->get();
+        
+    }
+
+    public function createactivitycomment(Request $request){
+        $temp = new Activitycomments();
+        $temp -> acc_id = $request->input('acc_id');
+        $temp->activity_id = $request->input('activity_id');
+        $temp->date_posted = Carbon::now();
+        $temp->comment_content = $request->input('comment_content');
+        $temp->save();
+
+        return DB:: table('activity_comment')
+        ->join('login' , 'login.acc_id' , "=" , "activity_comment.acc_id")
+        ->where('activity_id', $request->input('activity_id'))->get();
+    }
+
+    
+
+
+
 
     
 

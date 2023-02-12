@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\ClasslistController;
 use App\Http\Controllers\Classworkcontroller;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\PersonlistController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -25,14 +27,15 @@ Route::get('get-announcementforstudent/{id?}',[AnnouncementController::class, 'g
 Route::get('get-topiclist/{id?}',[Classworkcontroller::class, 'gettopics']);
 Route::get('get-activitylist/{id?}',[Classworkcontroller::class, 'getactivities']);
 Route::get('getcommentcount_act/{id?}',[Classworkcontroller::class, 'getcommentcount']);
+Route::put('updateannouncement', [AnnouncementController::class, 'announcementpostnow']); // update the scheduled time for an announcement by ID
+
 
 //Route for user login
 Route::post('login',[UserController::class, 'login']);
 Route::post('register',[UserController::class, 'register']);
 Route::post('createtopic',[Classworkcontroller::class , 'createtopic']);
 Route::post('createactivity/{id?}',[Classworkcontroller::class, 'createactivity']);
-
-
+Route::post('postcomment',[AnnouncementController::class, 'postcomment']);
 
 
 
@@ -45,11 +48,20 @@ Route::get('getusertype/{id?}' ,[ClasslistController::class ,'checkusertype']);
 Route::get('getpersonlist/{id?}' , [PersonlistController::class, 'getpersonlist']);
 Route::get('getcomments/{id?}' , [AnnouncementController::class, 'getcomments']);
 Route::get('getstudentlist/{id?}' , [PersonlistController::class, 'getstudentlist']);
+Route::get('getactivitycommentlist/{id?}' , [Classworkcontroller::class, 'getactivitycommentlist']);
+
+Route::get('getdeptinfo/{id?}' , [PersonlistController::class, 'getdeptinfo']);
+
+Route::get('getdepartment/{id?}' , [DepartmentController::class, 'getdepartment']);
 
 
 
+Route::get('announcementpostnow/{id?}' , [AnnouncementController::class, 'announcementpostnow']);
+
+Route::put('createactivitycomment' , [Classworkcontroller::class, 'createactivitycomment']);
 
 
+Route::post('attendance-in' , [AttendanceController::class, 'attendancein']);
 
 
 

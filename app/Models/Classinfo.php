@@ -9,6 +9,7 @@ class Classinfo extends Model
 {
     use HasFactory;
     protected $table = 'classinfo';
-
-   
+    protected $primaryKey ='classes_id';
+    protected $fillable = ['sched_from', 'sched_to'];
+    public $timestamps = false;
 }
