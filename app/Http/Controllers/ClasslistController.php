@@ -38,7 +38,9 @@ class ClasslistController extends Controller
                         'login.acc_id' , 
                         'classinfo.classbanner',
                         'isarchived',
-                        'login.usertype')
+                        'login.usertype',
+                        'moduleSource'
+                        )
             ->where('classlist.acc_id', $id)
             ->where('classinfo.isarchived' , 0)
             ->get();

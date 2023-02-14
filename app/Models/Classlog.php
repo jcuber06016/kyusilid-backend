@@ -5,13 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Topics extends Model
+class Classlog extends Model
+{
 
-
-{ 
+    protected $table = "class_log";
     use HasFactory;
-   public $timestamps = false;
-
-    protected $table = "topic";
-    protected $primaryKey = 'topic_id';
 }

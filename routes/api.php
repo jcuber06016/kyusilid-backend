@@ -49,10 +49,11 @@ Route::get('getpersonlist/{id?}' , [PersonlistController::class, 'getpersonlist'
 Route::get('getcomments/{id?}' , [AnnouncementController::class, 'getcomments']);
 Route::get('getstudentlist/{id?}' , [PersonlistController::class, 'getstudentlist']);
 Route::get('getactivitycommentlist/{id?}' , [Classworkcontroller::class, 'getactivitycommentlist']);
-
 Route::get('getdeptinfo/{id?}' , [PersonlistController::class, 'getdeptinfo']);
-
 Route::get('getdepartment/{id?}' , [DepartmentController::class, 'getdepartment']);
+Route::get('getclass_log/{id?}' , [Classworkcontroller::class, 'getclass_log']);
+
+
 
 
 
