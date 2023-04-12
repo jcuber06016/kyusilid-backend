@@ -10,5 +10,5 @@ class Activities extends Model
     protected $table = 'activity';
     use HasFactory;
     public $timestamps = false;
-    public $primaryKey = 'activity_id';
+    protected $primaryKey = 'activity_id';
 }

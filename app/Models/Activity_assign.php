@@ -10,4 +10,5 @@ class Activity_assign extends Model
     use HasFactory;
     protected $table = 'activity_assign';
     public $timestamps = false;
+    protected $primaryKey = "assign_id";
 }

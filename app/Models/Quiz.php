@@ -5,17 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Classlist extends Model
+class Quiz extends Model
 {
     use HasFactory;
+    protected $table = 'quiz';
+    protected $fillable = [ 'title','description','question'];
 
-    protected $table = 'classlist';
-    protected $primary = 'class_id';
-    protected $fillable = ['classes_id','acc_id'];
     public $timestamps = false;
 
- 
-
-
+    protected $casts = [
+        'question' => 'array',
+    ];
 
 }

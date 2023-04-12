@@ -19,6 +19,129 @@ class PersonlistController extends Controller
         ->where('classlist.classes_id', $id)
         ->get();    
     }
+    
+    
+    
+    public function getgradelist($id =null){
+        $studlist = DB::table('classlist')
+            ->join('login' ,'login.acc_id' ,'=' ,'classlist.acc_id')    
+            ->where('classlist.classes_id', $id)
+            ->where('login.usertype' , "stud")
+           ->select("firstname" ,  "lastname" , "middle" , "suffix" , "login.acc_id")
+            ->get();
+            
+         
+         
+         
+        $gradelist2 = []; 
+        foreach($studlist as $item){
+            $activities = DB::table('activity_assign')
+            ->join("activity" , 'activity.activity_id' , "=" , "activity_assign.activity_id")
+            ->where("activity_assign.acc_id" , $item->acc_id)
+            ->where("activity_type" , "Activity")
+            ->select( "grade" , "points")
+            ->get();
+            $activitygrade =[
+                    "grade" => 0,
+                    "points" => 0
+                   ];
+            $activitygradetotal = 0;
+            $activitypointstotal = 0;
+      
+            if(count($activities) > 0){
+            
+                foreach($activities as $item2){
+                    $activitygradetotal +=  $item2->grade;
+                    $activitypointstotal += $item2->points;
+                   
+                } 
+               $activitygrade = [
+                    "grade" => $activitygradetotal / count($activities),
+                    "points" => $activitypointstotal / count($activities)
+                   ];
+                   
+                   
+            }
+            
+            
+             $assignment = DB::table('activity_assign')
+            ->join("activity" , 'activity.activity_id' , "=" , "activity_assign.activity_id")
+            ->where("activity_assign.acc_id" , $item->acc_id)
+            ->where("activity_type" , "Assignment")
+            ->select( "grade" , "points")
+            ->get();
+            $assignmentgrade = [
+                    "grade" => 0,
+                    "points" => 0
+                   ];
+            $assignmentgradetotal = 0;
+            
+      
+            if(count($assignment)>0){
+                  $temp = 0;
+                foreach($assignment as $item2){
+                    $assignmentgradetotal +=  $item2->grade;
+                     $temp = $item2->points;
+                   
+                } 
+               $assignmentgrade =[
+                    "grade" => $assignmentgradetotal / count($assignment),
+                    "points" => $temp
+                   ];
+            }
+            
+            ////
+             $questionnaire = DB::table('activity_assign')
+            ->join("activity" , 'activity.activity_id' , "=" , "activity_assign.activity_id")
+            ->where("activity_assign.acc_id" , $item->acc_id)
+            ->where("activity_type" , "Questionnaire")
+            ->select( "grade" , "points")
+            ->get();
+            $questionnairegrade = [
+                    "grade" => 0,
+                    "points" => 0
+                   ];
+            $questionnairegradetotal = 0;
+            
+      
+            if(count($questionnaire)>0){
+                  $temp = 0;
+                foreach($questionnaire as $item2){
+                    $questionnairegradetotal +=  $item2->grade;
+                     $temp = $item2->points;
+                   
+                } 
+               $questionnairegrade =[
+                    "grade" => $questionnairegradetotal / count($questionnaire),
+                    "points" => $temp
+                   ];
+            }
+            
+            
+            ////
+            
+   
+            
+            $temp = [
+                "student" => [
+                        "name" => $item->firstname . " " . $item->middle . " " . $item->lastname . " " . $item->suffix,
+                        "acc_id" => $item->acc_id
+                    ],
+                "activity" => $activitygrade,
+                "assignment" => $assignmentgrade,
+                "questionnaire" => $questionnairegrade
+            ];
+            
+            $gradelist2[] = $temp;
+        
+        }
+            
+        return $gradelist2;
+            
+            
+    }
+    
+    
 
     public function getstudentlist($id = null){ // acc id 
         $classlist = DB:: table('classlist')
@@ -58,26 +181,34 @@ class PersonlistController extends Controller
 
         $firstyear = DB::table('classinfo')
         ->where('dep_id' , $id)
-        ->where('yearlvl' , 1) ->get() ->count();
+        ->whereNotNull('classinfo.sec_id')
+        ->whereNotNull('classinfo.sub_id')
+        ->where('yearlvl' , 1)->count();
 
         $secondyear = DB::table('classinfo')
         ->where('dep_id' , $id)
-        ->where('yearlvl' , 2)->get()  ->count();
+        ->whereNotNull('classinfo.sec_id')
+        ->whereNotNull('classinfo.sub_id')
+        ->where('yearlvl' , 2)->count();
 
         $thirdyear = DB::table('classinfo')
         ->where('dep_id' , $id)
-        ->where('yearlvl' , 3) ->get() ->count();
+        ->whereNotNull('classinfo.sec_id')
+        ->whereNotNull('classinfo.sub_id')
+        ->where('yearlvl' , 3)->count();
 
         $fourthyear = DB::table('classinfo')
         ->where('dep_id' , $id)
-        ->where('yearlvl' , 4)->get() ->count();
+        ->whereNotNull('classinfo.sec_id')
+        ->whereNotNull('classinfo.sub_id')
+        ->where('yearlvl' , 4)->count();
 
 
         $studcount = DB:: table('student')
-        ->where('stud_course' , $id)->get() ->count();
+        ->where('stud_course' , $id)->count();
 
         $profcount = DB:: table('professor')
-        ->where('dep_id' , $id)->get() ->count();
+        ->where('dep_id' , $id)->count();
 
         $temp2 = [
             'depadminlist' => $admintable,
@@ -92,10 +223,14 @@ class PersonlistController extends Controller
 
         return $temp2;
 
-
-
-
     }
+    
+    
+    
+    
+    
+    
+  
 
  
 
